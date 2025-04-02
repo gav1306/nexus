@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         >
           <Header />
           <main>
-            <section className="max-w-7xl mx-auto">{children}</section>
+            <section className="max-w-7xl mx-auto p-4">{children}</section>
           </main>
           <Footer />
         </ThemeProvider>
