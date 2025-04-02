@@ -1,4 +1,4 @@
-import { Icons } from "@/assets/icons";
+import { Icons } from "@/assets/icons/icons";
 import Link from "next/link";
 
 export const Footer = () => {

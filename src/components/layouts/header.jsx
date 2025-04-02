@@ -1,4 +1,4 @@
-import { Icons } from "@/assets/icons";
+import { Icons } from "@/assets/icons/icons";
 import { Menu } from "./menu";
 import { ToggleTheme } from "./toggle-theme";
 import Link from "next/link";
