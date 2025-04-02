@@ -21,26 +21,28 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased grid grid-rows-[auto_1fr_auto] min-h-dvh`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
           <QueryClient>
-            <Header />
-            <main>
-              <section className="max-w-7xl mx-auto p-4">{children}</section>
-            </main>
-            <Footer />
+            <section className="grid grid-rows-[auto_1fr_auto] min-h-dvh">
+              <Header />
+              <main>
+                <section className="max-w-7xl mx-auto p-4">{children}</section>
+              </main>
+              <Footer />
+            </section>
           </QueryClient>
         </ThemeProvider>
+        <Toaster richColors />
       </body>
-      <Toaster />
     </html>
   );
 }

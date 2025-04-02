@@ -62,7 +62,10 @@ const createInstance = (baseURL) => {
   return instance;
 };
 
-export const binanceApi = createInstance(import.meta.env.VITE_BINANCE_BASE_URL);
+export const binanceApi = createInstance(
+  process.env.NEXT_PUBLIC_BINANCE_BASE_URL
+);
+
 export const coingeckoApi = createInstance(
-  import.meta.env.VITE_COINGECKO_BASE_URL
+  process.env.NEXT_PUBLIC_COINGECKO_BASE_URL
 );
