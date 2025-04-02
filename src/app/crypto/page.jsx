@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { List } from "@/modules/crypto/pages";
 
 export default function Crypto() {
-  return <h1>crypto</h1>;
+  return <List />;
 }

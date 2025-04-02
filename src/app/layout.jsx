@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/providers";
+import { QueryClient, ThemeProvider } from "@/providers";
 import { Footer, Header } from "@/components/layouts";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,13 +31,16 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main>
-            <section className="max-w-7xl mx-auto p-4">{children}</section>
-          </main>
-          <Footer />
+          <QueryClient>
+            <Header />
+            <main>
+              <section className="max-w-7xl mx-auto p-4">{children}</section>
+            </main>
+            <Footer />
+          </QueryClient>
         </ThemeProvider>
       </body>
+      <Toaster />
     </html>
   );
 }
