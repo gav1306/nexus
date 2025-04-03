@@ -4,9 +4,12 @@ import { useWebSocket } from "@/hooks";
 import { cryptoListColumns, CryptoListDataTable } from "../components";
 import { useSuspenseGetCryptoList } from "../services";
 import { useRef } from "react";
-import { formatCurrency } from "../utils";
+import { formatCurrency, SYMBOL_DETAILS } from "../utils";
+import { useCryptoNotificationStore } from "../store";
+import { toast } from "sonner";
 
 export const AllCryptoList = () => {
+  const { threshold } = useCryptoNotificationStore();
   useWebSocket(
     `${process.env.NEXT_PUBLIC_BINANCE_WEBSOCKET}?streams=btcusdt@ticker/ethusdt@ticker/bnbusdt@ticker/paxgusdt@ticker/dogeusdt@ticker`,
     ({ data }) => {
@@ -26,6 +29,15 @@ export const AllCryptoList = () => {
           }
           priceEl.dataset.price = currentPrice;
           priceEl.innerText = formatCurrency(currentPrice);
+          const priceDifference = Math.abs(currentPrice - prevPrice);
+          if (priceDifference >= threshold) {
+            const { name } = SYMBOL_DETAILS[symbol];
+            toast.info(
+              `Price of ${name} changed from ${formatCurrency(
+                prevPrice
+              )} to ${formatCurrency(currentPrice)}`
+            );
+          }
         }
       }
     }

@@ -4,10 +4,13 @@ import { useWebSocket } from "@/hooks";
 import { cryptoListColumns, CryptoListDataTable } from "../components";
 import { useGetFavoriteCryptoList } from "../services";
 import { useRef } from "react";
-import { formatCurrency } from "../utils";
+import { formatCurrency, SYMBOL_DETAILS } from "../utils";
 import { useFavoriteCryptoStore } from "../store";
+import { useCryptoNotificationStore } from "../store";
+import { toast } from "sonner";
 
 export const FavoriteCryptoList = () => {
+  const { threshold } = useCryptoNotificationStore();
   const { favorites } = useFavoriteCryptoStore();
   let binanceWebSocketURL = process.env.NEXT_PUBLIC_BINANCE_WEBSOCKET;
   favorites.forEach((symbol, index) => {
@@ -35,6 +38,15 @@ export const FavoriteCryptoList = () => {
         }
         priceEl.dataset.price = currentPrice;
         priceEl.innerText = formatCurrency(currentPrice);
+        const priceDifference = Math.abs(currentPrice - prevPrice);
+        if (priceDifference >= threshold) {
+          const { name } = SYMBOL_DETAILS[symbol];
+          toast.info(
+            `Price of ${name} changed from ${formatCurrency(
+              prevPrice
+            )} to ${formatCurrency(currentPrice)}`
+          );
+        }
       }
     }
   });

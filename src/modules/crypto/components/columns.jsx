@@ -1,5 +1,4 @@
-import { Icons } from "@/assets/icons";
-import { formatCurrency, formatToPercentage } from "../utils";
+import { formatCurrency, formatToPercentage, SYMBOL_DETAILS } from "../utils";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import {
@@ -9,29 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useFavoriteCryptoStore } from "../store";
-
-const SYMBOL_DETAILS = {
-  BTCUSDT: {
-    name: "Bitcoin",
-    icon: <Icons.Bitcoin width={32} height={32} />,
-  },
-  ETHUSDT: {
-    name: "Ethereum",
-    icon: <Icons.Ethereum width={32} height={32} />,
-  },
-  BNBUSDT: {
-    name: "BNB",
-    icon: <Icons.Binance width={32} height={32} />,
-  },
-  DOGEUSDT: {
-    name: "Dogecoin",
-    icon: <Icons.DogeCoin width={32} height={32} />,
-  },
-  PAXGUSDT: {
-    name: "PAX Gold",
-    icon: <Icons.Paxos width={32} height={32} />,
-  },
-};
 
 export const cryptoListColumns = [
   {
