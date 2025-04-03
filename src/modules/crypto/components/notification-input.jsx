@@ -48,6 +48,8 @@ export function CryptoNotificationInput({ onClose }) {
               <FormItem>
                 <FormControl>
                   <Input
+                    type="number"
+                    step="0.01"
                     placeholder="threshold"
                     {...field}
                     onChange={thresholdHandler}
