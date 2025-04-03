@@ -1,6 +1,5 @@
 import { ERROR_MESSAGES } from "@/utils";
 import axios from "axios";
-import { toast } from "sonner";
 const createInstance = (baseURL) => {
   const instance = axios.create({
     baseURL,
@@ -21,9 +20,6 @@ const createInstance = (baseURL) => {
           errorMessage = ERROR_MESSAGES.TIMEOUT;
         } else {
           errorMessage = ERROR_MESSAGES.NETWORK_ERROR;
-        }
-        if(typeof window !== undefined) {
-          toast.error(errorMessage);
         }
         return Promise.reject({ message: errorMessage, originalError: error });
       }
@@ -50,9 +46,6 @@ const createInstance = (baseURL) => {
           errorMessage = ERROR_MESSAGES.SERVER_ERROR;
           break;
         }
-      }
-      if(typeof window !== undefined) {
-        toast.error(errorMessage);
       }
       return Promise.reject({
         message: errorMessage,
