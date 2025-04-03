@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 export const useWebSocket = (url, onMessage) => {
   useEffect(() => {

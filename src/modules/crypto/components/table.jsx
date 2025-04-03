@@ -81,11 +81,12 @@ export function CryptoListDataTable({
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   let columnRef = null;
+
                   if (cell.column.id === "lastPrice") {
                     columnRef = (el) => {
-                      ref.current[row.original.symbol] = {
-                        symbol: row.original.symbol,
-                        element: el,
+                      ref.current = {
+                        ...ref.current,
+                        [row.original.symbol]: el,
                       };
                     };
                   }
