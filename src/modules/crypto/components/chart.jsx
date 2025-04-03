@@ -11,19 +11,18 @@ import { CryptoChartTabs } from ".";
 
 export const CryptoChart = () => {
   const { id } = useParams();
+  const seriesRef = useRef(null);
+  const chartRef = useRef(null);
   const { filter } = useCryptoChartStore();
   const { data, isPending, isError } = useSuspenseGetCryptoDetails({
     ...filter,
     symbol: id,
   });
 
-  const chartRef = useRef(null);
-
   useEffect(() => {
     if (!data) {
       return;
     }
-    console.log(data);
 
     const root = am5.Root.new("chartdiv");
     chartRef.current = root;
@@ -42,11 +41,6 @@ export const CryptoChart = () => {
     );
     const baseInterval = { timeUnit: "minute", count: 15 };
     switch (filter.interval) {
-      case "15m": {
-        baseInterval.timeUnit = "minute";
-        baseInterval.count = 15;
-        break;
-      }
       case "1h": {
         baseInterval.timeUnit = "hour";
         baseInterval.count = 1;
@@ -67,9 +61,6 @@ export const CryptoChart = () => {
         baseInterval.count = 1;
         break;
       }
-
-      default:
-        break;
     }
     const xAxis = chart.xAxes.push(
       am5xy.DateAxis.new(root, {
@@ -89,7 +80,7 @@ export const CryptoChart = () => {
     );
     yAxis.get("renderer").grid.template.set("forceHidden", true);
     xAxis.get("renderer").grid.template.set("forceHidden", true);
-    const series = chart.series.push(
+    seriesRef.current = chart.series.push(
       am5xy.CandlestickSeries.new(root, {
         xAxis: xAxis,
         yAxis: yAxis,
@@ -98,10 +89,6 @@ export const CryptoChart = () => {
         lowValueYField: "low",
         highValueYField: "high",
         valueXField: "date",
-        lowValueYGrouped: "low",
-        highValueYGrouped: "high",
-        openValueYGrouped: "open",
-        valueYGrouped: "close",
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
           labelText:
@@ -118,9 +105,9 @@ export const CryptoChart = () => {
     );
     cursor.lineY.set("visible", false);
 
-    series.data.setAll(data);
+    seriesRef.current.data.setAll(data);
 
-    series.appear(1000);
+    seriesRef.current.appear(1000);
     chart.appear(1000, 100);
 
     return () => {
@@ -131,7 +118,7 @@ export const CryptoChart = () => {
   return (
     <div className="grid gap-4">
       <CryptoChartTabs />
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <div id="chartdiv" style={{ width: "100%", height: "65dvh" }}></div>
     </div>
   );
 };
