@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useFavoriteCryptoStore } from "../store";
+import Link from "next/link";
 
 export const cryptoListColumns = [
   {
@@ -20,13 +21,15 @@ export const cryptoListColumns = [
   },
   {
     accessorKey: "symbol",
-    header: "Name",
+    header: () => {
+      return <span className="text-left block">Name</span>;
+    },
     cell: ({ row }) => {
       const symbol = row.getValue("symbol");
 
       const { name, icon } = SYMBOL_DETAILS[symbol];
       return (
-        <div className="flex items-center gap-2 justify-center">
+        <div className="flex items-center gap-2 justify-start">
           {icon}
           <div className="grid">
             <span className="font-semibold">{name}</span>
@@ -166,8 +169,9 @@ export const cryptoListColumns = [
                   Add to favorites
                 </DropdownMenuItem>
               )}
-
-              <DropdownMenuItem>View details</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={`/crypto/${symbol}`}>View details</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

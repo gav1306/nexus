@@ -1,5 +1,5 @@
 import { CryptoHome } from "@/modules/crypto/pages";
 
-export default function Crypto() {
+export default function Home() {
   return <CryptoHome />;
 }
