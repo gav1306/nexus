@@ -1,4 +1,4 @@
-import { binanceApi } from "@/api";
+import { binanceApi } from "@/services";
 import { cryptoQueryKeys } from "./query-keys";
 import { useQuery } from "@tanstack/react-query";
 

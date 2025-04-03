@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { binanceApi } from "@/api";
+import { binanceApi } from "@/services";
 import { cryptoQueryKeys } from "./query-keys";
 import { SYMBOL_LIST_PARAMS } from "../utils";
 

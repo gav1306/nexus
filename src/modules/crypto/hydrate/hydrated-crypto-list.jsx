@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { getQueryClient } from "@/api";
+import { getQueryClient } from "@/services";
 import { cryptoQueryKeys, getCryptoList } from "../services";
 import { AllCryptoList } from "../pages";
 
