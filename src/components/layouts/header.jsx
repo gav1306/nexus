@@ -8,7 +8,7 @@ export const Header = () => {
     <header className="border-b border-dashed h-[85px] w-full flex items-center fixed top-0 z-50">
       <div className="max-w-7xl w-full mx-auto flex justify-between items-center border-x border-dashed p-4">
         <Link href="/">
-          <Icons.Logo className="w-32" />
+          <Icons.Logo className="w-26" />
         </Link>
         <div className="flex items-center gap-4">
           <Menu />
