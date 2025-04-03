@@ -9,7 +9,6 @@ export const initialFilterState = {
 };
 
 export const useCryptoChartStore = create(
-  persist(
     (set) => ({
       filter: initialFilterState,
 
@@ -65,9 +64,5 @@ export const useCryptoChartStore = create(
             }
           }
         }),
-    }),
-    {
-      name: "crypto-chart-filter-storage",
-    }
-  )
+    })
 );
