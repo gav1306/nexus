@@ -1,5 +1,5 @@
-import { HydratedCryptoList } from "@/modules/crypto/hydrate";
+import { CryptoListTabs } from "@/modules/crypto/components";
 
 export default function Crypto() {
-  return <HydratedCryptoList />;
+  return <CryptoListTabs />;
 }

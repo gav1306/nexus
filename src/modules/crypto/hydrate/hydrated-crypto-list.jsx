@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/api";
 import { cryptoQueryKeys, getCryptoList } from "../services";
-import { List } from "../pages";
+import { AllCryptoList } from "../pages";
 
 export async function HydratedCryptoList() {
   const queryClient = getQueryClient();
@@ -13,7 +13,7 @@ export async function HydratedCryptoList() {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <List />
+      <AllCryptoList />
     </HydrationBoundary>
   );
 }

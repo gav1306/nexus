@@ -1,10 +1,12 @@
+"use client";
+
 import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -15,7 +17,14 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 
-export function CryptoListDataTable({ columns, data, ref }) {
+export function CryptoListDataTable({
+  columns,
+  data,
+  ref,
+  isLoading,
+  isError,
+  emptyMessage = "No data found",
+}) {
   const [sorting, setSorting] = useState([]);
   const table = useReactTable({
     data,
@@ -36,7 +45,7 @@ export function CryptoListDataTable({ columns, data, ref }) {
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="px-7">
+                  <TableHead key={header.id} className="text-center">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -50,21 +59,38 @@ export function CryptoListDataTable({ columns, data, ref }) {
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {isLoading &&
+            Array.from({ length: 5 }).map((_, index) => (
+              <TableRow key={index}>
+                <TableCell colSpan={columns.length} className="h-[53px]">
+                  <Skeleton className="w-full h-full" />
+                </TableCell>
+              </TableRow>
+            ))}
+          {isError && (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                Something went wrong
+              </TableCell>
+            </TableRow>
+          )}
+          {!isLoading &&
+            !isError &&
+            !!table.getRowModel().rows?.length &&
             table.getRowModel().rows.map((row, index) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   let columnRef = null;
                   if (cell.column.id === "lastPrice") {
                     columnRef = (el) => {
-                      ref.current[index] = {
+                      ref.current[row.original.symbol] = {
                         symbol: row.original.symbol,
                         element: el,
                       };
                     };
                   }
                   return (
-                    <TableCell key={cell.id} className="px-7" ref={columnRef}>
+                    <TableCell key={cell.id} ref={columnRef}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -73,11 +99,11 @@ export function CryptoListDataTable({ columns, data, ref }) {
                   );
                 })}
               </TableRow>
-            ))
-          ) : (
+            ))}
+          {!isLoading && !isError && table.getRowModel().rows?.length === 0 && (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No Crypto Currencies Found !
+                {emptyMessage}
               </TableCell>
             </TableRow>
           )}

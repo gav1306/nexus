@@ -3,17 +3,14 @@
 import { useWebSocket } from "@/hooks";
 import { cryptoListColumns, CryptoListDataTable } from "../components";
 import { useSuspenseGetCryptoList } from "../services";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { formatCurrency } from "../utils";
 
-export const List = () => {
-  useWebSocket(
-    "wss://stream.binance.com:9443/ws/btcusdt@kline_1h/ethusdt@kline_1h/bnbusdt@kline_1h/dogeusdt@kline_1h/paxgusdt@kline_1h",
-    (data) => {
-      const {
-        s: symbol,
-        k: { c: currentPrice },
-      } = data;
+export const AllCryptoList = () => {
+  wss: useWebSocket(
+    "wss://stream.binance.com/stream?streams=btcusdt@ticker/ethusdt@ticker/bnbusdt@ticker/paxgusdt@ticker/dogeusdt@ticker",
+    ({ data }) => {
+      const { s: symbol, c: currentPrice } = data;
       symbolRefs.current.forEach((symbolEl) => {
         if (symbolEl.symbol === symbol) {
           const priceEl = symbolEl.element.querySelector("span");
@@ -32,13 +29,16 @@ export const List = () => {
     }
   );
   const symbolRefs = useRef([]);
-  const { data } = useSuspenseGetCryptoList();
+  const { data, isPending, isError, fetchStatus } = useSuspenseGetCryptoList();
 
   return (
     <CryptoListDataTable
       columns={cryptoListColumns}
-      data={data}
+      data={data || []}
       ref={symbolRefs}
+      isLoading={fetchStatus === "idle" ? false : isPending}
+      isError={isError}
+      emptyMessage="No crypto found"
     />
   );
 };
