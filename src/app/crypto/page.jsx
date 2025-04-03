@@ -1,5 +1,5 @@
-import { CryptoListTabs } from "@/modules/crypto/components";
+import { CryptoHome } from "@/modules/crypto/pages";
 
 export default function Crypto() {
-  return <CryptoListTabs />;
+  return <CryptoHome />;
 }

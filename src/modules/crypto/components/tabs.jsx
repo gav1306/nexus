@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FavoriteCryptoList } from "../pages";
+import { FavoriteCryptoList } from "./favorite-list";
 import { HydratedCryptoList } from "../hydrate";
 
 export function CryptoListTabs() {
