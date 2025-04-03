@@ -22,7 +22,7 @@ const createInstance = (baseURL) => {
         } else {
           errorMessage = ERROR_MESSAGES.NETWORK_ERROR;
         }
-        if(window !== undefined) {
+        if(typeof window !== undefined) {
           toast.error(errorMessage);
         }
         return Promise.reject({ message: errorMessage, originalError: error });
@@ -51,7 +51,7 @@ const createInstance = (baseURL) => {
           break;
         }
       }
-      if(window !== undefined) {
+      if(typeof window !== undefined) {
         toast.error(errorMessage);
       }
       return Promise.reject({
