@@ -11,5 +11,5 @@ export const useWebSocket = (url, onMessage) => {
     return () => {
       socket.close();
     };
-  }, [url]);
+  }, [url, onMessage]);
 };
