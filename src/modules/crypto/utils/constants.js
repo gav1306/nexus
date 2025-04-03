@@ -3,6 +3,6 @@ export const SYMBOL_LIST = [
   "ETHUSDT",
   "BNBUSDT",
   "DOGEUSDT",
-  "SOLUSDT",
+  "PAXGUSDT",
 ];
 export const SYMBOL_LIST_PARAMS = JSON.stringify(SYMBOL_LIST);
