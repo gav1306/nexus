@@ -29,3 +29,11 @@ export const SYMBOL_DETAILS = {
     icon: "Paxos",
   },
 };
+
+export const COIN_GECKO_NAMES = {
+  BTCUSDT: "bitcoin",
+  ETHUSDT: "ethereum",
+  BNBUSDT: "binancecoin",
+  DOGEUSDT: "dogecoin",
+  PAXGUSDT: "pax-gold",
+};
