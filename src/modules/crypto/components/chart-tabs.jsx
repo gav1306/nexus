@@ -3,16 +3,16 @@ import { CryptoNotificationDialog } from ".";
 import { useCryptoChartStore } from "../store";
 
 export function CryptoChartTabs() {
-  const { setFilter, filter } = useCryptoChartStore();
+  const { setFilter } = useCryptoChartStore();
   return (
-    <Tabs value={filter.interval} onValueChange={setFilter} className="w-full">
+    <Tabs defaultValue="1d" onValueChange={setFilter} className="w-full">
       <div className="flex items-center justify-between">
         <TabsList>
-          <TabsTrigger value="15m">1D</TabsTrigger>
-          <TabsTrigger value="1h">7D</TabsTrigger>
-          <TabsTrigger value="6h">1M</TabsTrigger>
-          <TabsTrigger value="1d">3M</TabsTrigger>
-          <TabsTrigger value="1w">1Y</TabsTrigger>
+          <TabsTrigger value="1d">1D</TabsTrigger>
+          <TabsTrigger value="7d">7D</TabsTrigger>
+          <TabsTrigger value="1m">1M</TabsTrigger>
+          <TabsTrigger value="3m">3M</TabsTrigger>
+          <TabsTrigger value="1y">1Y</TabsTrigger>
         </TabsList>
         <CryptoNotificationDialog />
       </div>
