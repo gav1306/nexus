@@ -6,7 +6,7 @@ export function CryptoChartTabs() {
   const { setFilter } = useCryptoChartStore();
   return (
     <Tabs defaultValue="1d" onValueChange={setFilter} className="w-full">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-end gap-4">
         <TabsList>
           <TabsTrigger value="1d">1D</TabsTrigger>
           <TabsTrigger value="7d">7D</TabsTrigger>
