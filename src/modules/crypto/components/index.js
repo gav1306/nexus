@@ -7,3 +7,4 @@ export * from "./notification-input";
 export * from "./notification-dialog";
 export * from "./chart";
 export * from "./chart-tabs";
+export * from "./info-card";
