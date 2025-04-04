@@ -8,7 +8,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import {
   useSuspenseGetCrypto,
   useSuspenseGetCryptoDetails,
-  useSuspenseGetCryptoMetaDetails,
+  useGetCryptoMetaDetails,
 } from "../services";
 import { useParams } from "next/navigation";
 import { useCryptoChartStore, useCryptoNotificationStore } from "../store";
@@ -39,7 +39,7 @@ export const CryptoChart = () => {
   const { filter } = useCryptoChartStore();
   const { data: detailsData } = useSuspenseGetCrypto(symbol);
   const { data: metaDetailsData, isPending: metaDetailsPending } =
-    useSuspenseGetCryptoMetaDetails(symbol);
+    useGetCryptoMetaDetails(symbol);
   const { data: chartDetailsData } = useSuspenseGetCryptoDetails({
     ...filter,
     symbol,
