@@ -14,6 +14,7 @@ import { Icons } from "@/assets/icons";
 export const cryptoListColumns = [
   {
     accessorKey: "",
+    id: crypto.randomUUID(),
     header: "Sr.No",
     cell: (prop) => (
       <span className="text-center block">{prop.row.index + 1}</span>

@@ -4,7 +4,6 @@ import { QueryClient, ThemeProvider } from "@/providers";
 import { Footer, Header } from "@/components/layouts";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +36,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -52,7 +51,6 @@ export default function RootLayout({ children }) {
                 </main>
                 <Footer />
               </section>
-              <BackgroundBeams />
             </TooltipProvider>
           </QueryClient>
         </ThemeProvider>
