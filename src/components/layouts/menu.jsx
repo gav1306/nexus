@@ -20,7 +20,7 @@ export function Menu() {
           <Link href="/crypto" legacyBehavior passHref>
             <NavigationMenuLink
               className={navigationMenuTriggerStyle()}
-              data-active={pathname === "/crypto"}
+              data-active={pathname.startsWith("/crypto")}
             >
               Crypto
             </NavigationMenuLink>
@@ -30,7 +30,7 @@ export function Menu() {
           <Link href="/weather" legacyBehavior passHref>
             <NavigationMenuLink
               className={navigationMenuTriggerStyle()}
-              data-active={pathname === "/weather"}
+              data-active={pathname.startsWith("/weather")}
             >
               Weather
             </NavigationMenuLink>
@@ -40,7 +40,7 @@ export function Menu() {
           <Link href="/news" legacyBehavior passHref>
             <NavigationMenuLink
               className={navigationMenuTriggerStyle()}
-              data-active={pathname === "/news"}
+              data-active={pathname.startsWith("/news")}
             >
               News
             </NavigationMenuLink>

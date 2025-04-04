@@ -21,6 +21,8 @@ import { useTheme } from "next-themes";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export const CryptoChart = () => {
   const { id: symbol } = useParams();
@@ -288,6 +290,11 @@ export const CryptoChart = () => {
 
   return (
     <div className="grid h-full grid-rows-[auto_1fr_auto] gap-4">
+      <Button asChild variant="link" className="text-lg justify-self-start">
+        <Link href="/crypto">
+          <ArrowLeft /> Go Back
+        </Link>
+      </Button>
       <h1 className="flex items-center gap-4 text-4xl font-bold">
         <IconComponent width={60} height={60} /> {name}
       </h1>
