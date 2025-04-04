@@ -20,7 +20,7 @@ export const getCryptoDetails = async (params) => {
 
 export const useSuspenseGetCryptoDetails = (params) => {
   return useSuspenseQuery({
-    queryKey: cryptoQueryKeys.details(params),
+    queryKey: cryptoQueryKeys.chartDetails(params),
     queryFn: () => getCryptoDetails(params),
   });
 };
