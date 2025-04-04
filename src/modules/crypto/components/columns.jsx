@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useFavoriteCryptoStore } from "../store";
 import Link from "next/link";
+import { Icons } from "@/assets/icons";
 
 export const cryptoListColumns = [
   {
@@ -28,9 +29,10 @@ export const cryptoListColumns = [
       const symbol = row.getValue("symbol");
 
       const { name, icon } = SYMBOL_DETAILS[symbol];
+      const IconComponent = Icons[icon];
       return (
         <div className="flex items-center gap-2 justify-start">
-          {icon}
+          <IconComponent width={32} height={32} />
           <div className="grid">
             <span className="font-semibold">{name}</span>
             <span className="text-xs">{symbol}</span>
