@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { WeatherHome } from "@/modules/weather/pages";
 
 export default function Weather() {
-  return <h1>Weather</h1>;
+  return <WeatherHome />;
 }

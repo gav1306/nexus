@@ -73,3 +73,6 @@ export const binanceApi = createInstance(
 export const coingeckoApi = createInstance(
   process.env.NEXT_PUBLIC_COINGECKO_BASE_URL
 );
+export const openMeteoApi = createInstance(
+  process.env.NEXT_PUBLIC_OPEN_METEO_BASE_URL
+);
