@@ -4,3 +4,6 @@ export * from "./favorite-list";
 export * from "./table";
 export * from "./columns";
 export * from "./empty";
+export * from "./details";
+export * from "./chart-tabs";
+export * from "./weather-card";

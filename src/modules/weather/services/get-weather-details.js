@@ -18,5 +18,8 @@ export const useSuspenseGetWeatherDetails = (params) => {
   return useSuspenseQuery({
     queryKey: weatherQueryKeys.details(params),
     queryFn: () => getWeatherDetails(params),
+    staleTime: 600000,
+    refetchInterval: 600000,
+    refetchIntervalInBackground: true,
   });
 };

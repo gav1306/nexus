@@ -13,12 +13,18 @@ export const DEFAULT_WEATHER_PARAMS = {
   timezone: "auto",
 };
 
+export const DEFAULT_WEATHER_CHART_PARAMS = {
+  past_days: 7,
+  daily:
+    "temperature_2m_min,temperature_2m_max,precipitation_sum,wind_speed_10m_max",
+  timezone: "auto",
+};
+
 export const CITY_LIST = {
   delhi: { name: "New Delhi", latitude: 28.75, longitude: 77.125 },
   mumbai: { name: "Mumbai", latitude: 19.125, longitude: 72.875 },
   bangalore: { name: "Bengaluru", latitude: 13, longitude: 77.625 },
   chennai: { name: "Chennai", latitude: 13, longitude: 80.125 },
-  kolkata: { name: "Kolkata", latitude: 22.625, longitude: 88.375 },
   kolkata: { name: "Kolkata", latitude: 22.625, longitude: 88.375 },
 };
 
