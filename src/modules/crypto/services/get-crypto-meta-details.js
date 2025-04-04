@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { coingeckoApi } from "@/services";
 import { cryptoQueryKeys } from "./query-keys";
 import { COIN_GECKO_NAMES } from "../utils";
@@ -18,8 +18,8 @@ export const getCryptoMetaDetails = async (symbol) => {
   return response.data;
 };
 
-export const useSuspenseGetCryptoMetaDetails = (symbol) => {
-  return useSuspenseQuery({
+export const useGetCryptoMetaDetails = (symbol) => {
+  return useQuery({
     queryKey: cryptoQueryKeys.metaDetails(symbol),
     queryFn: () => getCryptoMetaDetails(symbol),
   });
