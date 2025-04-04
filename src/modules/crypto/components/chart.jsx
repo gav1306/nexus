@@ -6,18 +6,55 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { useSuspenseGetCryptoDetails } from "../services";
 import { useParams } from "next/navigation";
-import { useCryptoChartStore } from "../store";
+import { useCryptoChartStore, useCryptoNotificationStore } from "../store";
 import { CryptoChartTabs } from ".";
+import { formatCurrency, SYMBOL_DETAILS } from "../utils";
+import { Icons } from "@/assets/icons";
+import { useWebSocket } from "@/hooks";
+import { toast } from "sonner";
 
 export const CryptoChart = () => {
-  const { id } = useParams();
+  const { id: symbol } = useParams();
   const seriesRef = useRef(null);
   const chartRef = useRef(null);
   const { filter } = useCryptoChartStore();
-  const { data, isPending, isError } = useSuspenseGetCryptoDetails({
+  const { data } = useSuspenseGetCryptoDetails({
     ...filter,
-    symbol: id,
+    symbol,
   });
+  const priceElRef = useRef(null);
+  const { threshold } = useCryptoNotificationStore();
+  useWebSocket(
+    `${
+      process.env.NEXT_PUBLIC_BINANCE_WEBSOCKET
+    }?streams=${symbol.toLocaleLowerCase()}@ticker`,
+    ({ data }) => {
+      const { s: symbol, c: currentPrice } = data;
+      const priceEl = priceElRef.current;
+
+      if (priceEl) {
+        const prevPrice = +priceEl.dataset.price || 0;
+        if (prevPrice > currentPrice) {
+          priceEl.classList.add("text-red-500");
+          priceEl.classList.remove("text-green-500");
+        } else if (prevPrice < currentPrice) {
+          priceEl.classList.add("text-green-500");
+          priceEl.classList.remove("text-red-500");
+        }
+        priceEl.dataset.price = currentPrice;
+        priceEl.innerText = `( ${formatCurrency(currentPrice)} )`;
+        const priceDifference = Math.abs(currentPrice - prevPrice);
+        if (priceDifference >= threshold) {
+          const { name } = SYMBOL_DETAILS[symbol];
+          toast.info(
+            `Price of ${name} changed from ${formatCurrency(
+              prevPrice
+            )} to ${formatCurrency(currentPrice)}`
+          );
+        }
+      }
+    }
+  );
 
   useEffect(() => {
     if (!data) {
@@ -46,19 +83,19 @@ export const CryptoChart = () => {
         baseInterval.count = 1;
         break;
       }
-      case "6h": {
+      case "4h": {
         baseInterval.timeUnit = "hour";
-        baseInterval.count = 6;
+        baseInterval.count = 4;
         break;
       }
-      case "1d": {
+      case "12h": {
+        baseInterval.timeUnit = "hour";
+        baseInterval.count = 12;
+        break;
+      }
+      case "3d": {
         baseInterval.timeUnit = "day";
-        baseInterval.count = 1;
-        break;
-      }
-      case "1w": {
-        baseInterval.timeUnit = "week";
-        baseInterval.count = 1;
+        baseInterval.count = 3;
         break;
       }
     }
@@ -115,10 +152,23 @@ export const CryptoChart = () => {
     };
   }, [data, filter]);
 
+  const { name, icon } = SYMBOL_DETAILS[symbol];
+  const IconComponent = Icons[icon];
+
   return (
-    <div className="grid gap-4">
+    <div className="grid h-full grid-rows-[auto_auto_1fr] gap-4">
+      <div className="flex items-center justify-between">
+        <h1 className="flex items-center gap-4 text-4xl font-bold">
+          <IconComponent width={60} height={60} /> {name}{" "}
+        </h1>
+        <span
+          className="font-medium text-2xl"
+          data-price={data[data.length - 1].value}
+          ref={priceElRef}
+        >{`( ${formatCurrency(data[data.length - 1].value)} )`}</span>
+      </div>
       <CryptoChartTabs />
-      <div id="chartdiv" style={{ width: "100%", height: "65dvh" }}></div>
+      <div id="chartdiv" style={{ width: "100%", height: "100%" }} />
     </div>
   );
 };
