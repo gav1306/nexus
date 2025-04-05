@@ -16,6 +16,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
+import ghostAnimation from "@/assets/animations/ghost.json";
+import { LottieAnimation } from "@/components/ui/lottie-animation";
 
 export function WeatherListDataTable({
   columns,
@@ -92,8 +94,17 @@ export function WeatherListDataTable({
             ))}
           {!isLoading && !isError && table.getRowModel().rows?.length === 0 && (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                {emptyMessage}
+              <TableCell
+                colSpan={columns.length}
+                className="h-[300px] text-center"
+              >
+                <div className="grid place-items-center place-content-center">
+                  <LottieAnimation
+                    className="w-[200px]"
+                    animationData={ghostAnimation}
+                  />
+                  <span className="text-xl font-thin">{emptyMessage}</span>
+                </div>
               </TableCell>
             </TableRow>
           )}

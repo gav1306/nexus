@@ -30,13 +30,19 @@ export function WeatherCard({ cityWeather }) {
   const currentWeather = WEATHER_TYPES.find(({ from, to }) => {
     return weather_code >= from && weather_code <= to;
   });
+
+  const removeFromFavoritesHandler = (e) => {
+    e.preventDefault();
+    removeFromFavorites(cityKey);
+  };
+
   return (
     <Card className="aspect-[1/1.2] py-0 overflow-hidden relative grid grid-rows-[1fr_auto] gap-2">
       <CardContent className="grid place-items-center place-content-center gap-4 bg-muted">
         <Tooltip>
           <TooltipTrigger
             className="cursor-pointer h-auto w-auto absolute top-4 right-4 text-amber-200"
-            onClick={removeFromFavorites.bind(null, cityKey)}
+            onClick={removeFromFavoritesHandler}
           >
             <Star className="fill-amber-200" size={28} />
           </TooltipTrigger>
