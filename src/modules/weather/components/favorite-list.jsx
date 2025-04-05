@@ -48,6 +48,8 @@ export const FavoriteWeatherList = () => {
     });
   }
 
+  console.log(data);
+
   if (!data.length) {
     return (
       <Empty
