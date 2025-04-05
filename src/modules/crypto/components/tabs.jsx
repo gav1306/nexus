@@ -6,8 +6,8 @@ import { CryptoNotificationDialog } from ".";
 export function CryptoListTabs() {
   return (
     <Tabs defaultValue="all">
-      <div className="flex items-center justify-between">
-        <TabsList className="grid w-[400px] grid-cols-2">
+      <div className="flex items-center gap-4 justify-between">
+        <TabsList className="grid w-full md:w-[400px] grid-cols-2">
           <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="favorites">Favorites</TabsTrigger>
         </TabsList>

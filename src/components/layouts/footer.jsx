@@ -8,7 +8,7 @@ export const Footer = () => {
   const isDarkMode = resolvedTheme === "dark";
   return (
     <footer className="border-t border-dashed">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-6 border-x border-dashed">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex gap-2 items-center justify-between px-4 py-6 border-x border-dashed">
         <div className="flex flex-col items-center gap-2">
           <span>&copy; 2025 Nexus, Inc.</span>
           <ul className="flex items-center gap-4">

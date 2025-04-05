@@ -40,7 +40,7 @@ export function CryptoListDataTable({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="w-[calc(100vw-32px)] lg:w-auto overflow-scroll rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -21,7 +21,7 @@ export const NewsCard = ({
 }) => {
   return (
     <Card className="flex w-full gap-4 p-4 shadow-md">
-      <CardContent className="p-0 grid gap-4 grid-cols-[auto_1fr] items-center">
+      <CardContent className="p-0 grid gap-4 sm:grid-cols-[auto_1fr] items-center">
         <NewsImage author={AUTHORS} url={IMAGE_URL} />
         <div className="grid gap-2">
           <CardHeader className="p-0 grid-rows-1">
@@ -29,14 +29,18 @@ export const NewsCard = ({
               {TITLE}
             </CardTitle>
           </CardHeader>
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex flex-col md:flex-row md:items-center gap-2 text-xs">
             <Badge>{AUTHORS}</Badge>
             <span className="flex items-center gap-1">
               <Clock1 className="w-4 h-4" />
               {formatSecondsToDate(PUBLISHED_ON)}
             </span>
           </div>
-          <Link href={URL} target="_blank" className="text-sm hover:underline">
+          <Link
+            href={URL}
+            target="_blank"
+            className="text-sm break-all hover:underline"
+          >
             {URL}
           </Link>
         </div>

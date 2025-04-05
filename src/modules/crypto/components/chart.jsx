@@ -299,7 +299,7 @@ export const CryptoChart = () => {
         <IconComponent width={60} height={60} /> {name}
       </h1>
 
-      <div className="grid h-full grid-cols-[0.7fr_2fr]">
+      <div className="grid h-full gap-4 xl:grid-cols-[0.7fr_2fr]">
         <div className="grid grid-rows-[auto_1fr] gap-4">
           <span
             className="font-bold text-2xl"
@@ -311,7 +311,7 @@ export const CryptoChart = () => {
             )}
           </span>
           <div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-2">
               <InfoCard
                 title="Price Change"
                 info="Price change in the last 24 hours."
