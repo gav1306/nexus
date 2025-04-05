@@ -60,7 +60,11 @@ export function CryptoNotificationInput({ onClose }) {
             );
           }}
         />
-        <Button type="submit" variant="secondary" className="justify-self-end">
+        <Button
+          type="submit"
+          variant="secondary"
+          className="w-full lg:w-auto lg:justify-self-end"
+        >
           Save
         </Button>
       </form>

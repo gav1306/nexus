@@ -8,7 +8,7 @@ export const CardHoverEffect = ({ className, children }) => {
   let [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className={cn("grid grid-cols-3", className)}>
+    <div className={cn("grid", className)}>
       {Children.map(children, (child, idx) => {
         return (
           <div

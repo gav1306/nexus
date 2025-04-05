@@ -14,7 +14,7 @@ export function Menu() {
   const pathname = usePathname();
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link href="/crypto" legacyBehavior passHref>

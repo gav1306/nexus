@@ -58,7 +58,7 @@ export const FavoriteWeatherList = () => {
   }
 
   return (
-    <CardHoverEffect className="grid-cols-4">
+    <CardHoverEffect className="sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {data.map((cityWeather) => {
         const [cityKey] = Object.entries(CITY_LIST).find(([_, city]) => {
           const { latitude, longitude } = city;

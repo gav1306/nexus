@@ -16,11 +16,11 @@ export const CryptoDetailsLoading = () => {
         <Skeleton className="w-[130px] h-[40px]" />
       </div>
 
-      <div className="grid h-full gap-4 grid-cols-[0.7fr_2fr]">
+      <div className="grid h-full gap-4 xl:grid-cols-[0.7fr_2fr]">
         <div className="grid grid-rows-[auto_1fr] gap-4">
           <Skeleton className="h-[32px] w-[150px]" />
           <div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-2">
               {Array.from({ length: 8 }).map((_, index) => (
                 <Skeleton className="w-full h-[86px]" key={index} />
               ))}

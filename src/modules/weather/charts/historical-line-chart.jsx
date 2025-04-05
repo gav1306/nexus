@@ -44,7 +44,7 @@ export function HistoricalLineChart() {
 
   return (
     <ChartContainer
-      className="h-full w-full min-h-[500px]"
+      className="h-auto md:h-[400px] xl:h-full w-full xl:min-h-[500px]"
       config={chartConfig}
     >
       <AreaChart
