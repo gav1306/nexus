@@ -1,15 +1,15 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { Title } from "@/components/ui/title";
-import { NewsCard } from "../components";
 
-export const NewsHome = ({ data }) => {
+export const NewsHomeLoading = () => {
   return (
     <section className="grid gap-4">
       <Title>Top 10 News</Title>
       <ul className="grid gap-4">
-        {data.map((news) => {
+        {Array.from({ length: 10 }).map((_, index) => {
           return (
-            <li key={news.ID}>
-              <NewsCard {...news} />
+            <li key={index}>
+              <Skeleton className="w-full h-[200px]" />
             </li>
           );
         })}

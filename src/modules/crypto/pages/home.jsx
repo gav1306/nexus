@@ -1,11 +1,10 @@
+import { Title } from "@/components/ui/title";
 import { CryptoListTabs } from "../components";
 
 export const CryptoHome = () => {
   return (
     <section className="grid gap-4">
-      <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans font-bold">
-        Market Overview
-      </h1>
+      <Title>Market Overview</Title>
       <CryptoListTabs />
     </section>
   );

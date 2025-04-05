@@ -38,7 +38,7 @@ export function WeatherCard({ cityWeather }) {
 
   return (
     <Card className="aspect-[1/1.2] py-0 overflow-hidden relative grid grid-rows-[1fr_auto] gap-2">
-      <CardContent className="grid place-items-center place-content-center gap-4 bg-muted">
+      <CardContent className="grid place-items-center place-content-center gap-4 bg-secondary">
         <Tooltip>
           <TooltipTrigger
             className="cursor-pointer h-auto w-auto absolute top-4 right-4 text-amber-200"

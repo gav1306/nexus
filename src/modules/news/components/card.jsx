@@ -6,14 +6,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { NewsImage } from "./image";
-import { ChevronDown, Clock1 } from "lucide-react";
+import { Clock1 } from "lucide-react";
 import { formatSecondsToDate } from "../utils";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 export const NewsCard = ({
   TITLE,
@@ -33,31 +29,21 @@ export const NewsCard = ({
               {TITLE}
             </CardTitle>
           </CardHeader>
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <span className="px-2 py-1 bg-red-100 text-red-600 rounded-md">
-              {AUTHORS}
-            </span>
+          <div className="flex items-center gap-2 text-xs">
+            <Badge>{AUTHORS}</Badge>
             <span className="flex items-center gap-1">
               <Clock1 className="w-4 h-4" />
               {formatSecondsToDate(PUBLISHED_ON)}
             </span>
           </div>
-          <a
-            href={URL}
-            target="_blank"
-            className="text-xs hover:underline text-gray-400"
-          >
+          <Link href={URL} target="_blank" className="text-sm hover:underline">
             {URL}
-          </a>
+          </Link>
         </div>
       </CardContent>
-      <CardFooter>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>read more</AccordionTrigger>
-            <AccordionContent className="line-clamp-4">{BODY}</AccordionContent>
-          </AccordionItem>
-        </Accordion>
+
+      <CardFooter className="font-thin px-0 text-sm">
+        <p className="line-clamp-4">{BODY}</p>
       </CardFooter>
     </Card>
   );
